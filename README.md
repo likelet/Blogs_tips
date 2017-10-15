@@ -1,1 +1,15 @@
 # Blogs_tips
+## Subset bamfile with chromosome names and convert into fastq 
+* software required:[sambamba](https://github.com/lomereiter/sambamba) and bam2fastx, sambamba usages should refers to https://github.com/lomereiter/sambamba/wiki/%5Bsambamba-view%5D-Filter-expression-syntax#basic-conditions-for-fields
+
+```shell 
+#using star output reads as example 
+#!/bin/sh
+bamin=$1
+#sambamba view -F "ref_id==1" -f bam $bamin -o ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.bam
+#sort reads by names 
+sambamba sort -n ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.bam -o ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.sort.bam
+#bam2fastq
+bam2fastx -PANQ -o ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.fq.gz ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.sort.bam
+
+```
