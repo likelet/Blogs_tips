@@ -1,6 +1,6 @@
 # Blogs_tips
-## Subset bamfile with chromosome names and convert into fastq 
-* software required:[sambamba](https://github.com/lomereiter/sambamba) and bam2fastx, sambamba usages should refers to https://github.com/lomereiter/sambamba/wiki/%5Bsambamba-view%5D-Filter-expression-syntax#basic-conditions-for-fields
+## Subset bamfile with chromosome names and convert into paired fastq  
+* software required:[sambamba](https://github.com/lomereiter/sambamba) and [bam2fastx](https://github.com/infphilo/tophat) from tophat binery distribution, sambamba usages should refers to https://github.com/lomereiter/sambamba/wiki/%5Bsambamba-view%5D-Filter-expression-syntax#basic-conditions-for-fields
 
 ```shell 
 #using star output reads as example 
