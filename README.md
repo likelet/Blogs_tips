@@ -18,7 +18,7 @@ bam2fastx -PANQ -o ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.fq.gz ${bamin%%A
 ```
 **PS**: the numbers specified in `ref_id` means the ref order list in header from bamfle, which can be checked by 
 `samtools view -H your.bam` if samtools was installed. 
-## GVC output format instroduction
+## GVC output format information
 * This tips record the GVC software output format 
 1. `cnv.simp`
 
