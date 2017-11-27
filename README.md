@@ -104,5 +104,22 @@ bam2fastx -PANQ -o ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.fq.gz ${bamin%%A
 |GERP++_RS|||
 |rsID|dbsnp库注释||
 
-
+## Cluster management 
+* 1. shudown system 
+Shut down computational node 
+```shell
+#!/bin/sh
+for i in `seq 1 3`
+do
+ ssh cu0$i "hostname;init 0"
+done
+```
+umount storage 
+```shell
+umount /home
+```
+shutdown login node 
+```shell
+poweroff
+```
 
