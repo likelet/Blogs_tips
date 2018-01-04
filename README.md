@@ -122,7 +122,7 @@ shutdown login node
 ```shell
 poweroff
 ```
-##R code for ploting nomograph from competing risk survival analysis model 
+## R code for ploting nomograph from competing risk survival analysis model 
 ```R
 library(cmprsk)
 library(rms)
