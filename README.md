@@ -122,4 +122,32 @@ shutdown login node
 ```shell
 poweroff
 ```
+##R code for ploting nomograph from competing risk survival analysis model 
+```R
+library(cmprsk)
+library(rms)
+### add path 
+setwd("C:\\Users\\hh\\Desktop\\nomo")
+rt<-read.csv("Stomach.csv")
+rt
+View(rt)
+attach(rt) 
+#change variable names
+
+cov<-cbind(sexC, Age, AJCC_T,AJCC_N,AJCC_M,Surgery)
+for (i in 1:6)
+{
+  cov[,i]<-factor(cov[,i])
+}
+status<-factor(status)
+z <- crr(time,status,cov)
+z.p <- predict(z,cov)
+n=60#suppose I want to predict the probability of event at time 60(an order)
+df<-data.frame(y=z.p[n,-1],cov)
+ddist <- datadist(df)  
+options(datadist='ddist') 
+lmod<-ols(y~(sexC)+(Age)+(AJCC_T)+(AJCC_N)+(AJCC_M)+(Surgery),data=df)#
+nom<-nomogram(lmod)
+plot(nom,lplabel=paste("prob. of incidence T",round(z.p[n,1],2),sep="="))
+```
 
