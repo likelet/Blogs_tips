@@ -68,13 +68,13 @@ plot(nom,lplabel=paste("prob. of incidence T",round(z.p[n,1],2),sep="="))
 ```
 ## Setting docker download mirror site 
 Sometimes you may find that it's extrimely painfull to pull docker image from docker.io in china. So this tip can help you to set a mirror site locally in your docker pull command.  
-First, find the file `/etc/docker/daemon.json` and modify it with root authority.
+* 1. First, find the file `/etc/docker/daemon.json` and modify it with root authority.
 ```{javascript}
 {
   "registry-mirrors": ["https://registry.docker-cn.com"]
 }
 ```
-Secondly, restart your docker service. 
+* 2. Secondly, restart your docker service. 
 
 ## GVC output format information
 * This tips record the GVC software output format 
