@@ -18,6 +18,64 @@ bam2fastx -PANQ -o ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.fq.gz ${bamin%%A
 ```
 **PS**: the numbers specified in `ref_id` means the ref order list in header from bamfle, which can be checked by 
 `samtools view -H your.bam` if samtools was installed. 
+
+
+## Cluster management 
+* 1. shudown system 
+Shut down computational node 
+```shell
+#!/bin/sh
+for i in `seq 1 3`
+do
+ ssh cu0$i "hostname;init 0"
+done
+```
+umount storage 
+```shell
+umount /home
+```
+shutdown login node 
+```shell
+poweroff
+```
+## R code for ploting nomograph from competing risk survival analysis model 
+```R
+library(cmprsk)
+library(rms)
+### add path 
+setwd("C:\\Users\\hh\\Desktop\\nomo")
+rt<-read.csv("Stomach.csv")
+rt
+View(rt)
+attach(rt) 
+#change variable names
+
+cov<-cbind(sexC, Age, AJCC_T,AJCC_N,AJCC_M,Surgery)
+for (i in 1:6)
+{
+  cov[,i]<-factor(cov[,i])
+}
+status<-factor(status)
+z <- crr(time,status,cov)
+z.p <- predict(z,cov)
+n=60#suppose I want to predict the probability of event at time 60(an order)
+df<-data.frame(y=z.p[n,-1],cov)
+ddist <- datadist(df)  
+options(datadist='ddist') 
+lmod<-ols(y~(sexC)+(Age)+(AJCC_T)+(AJCC_N)+(AJCC_M)+(Surgery),data=df)#
+nom<-nomogram(lmod)
+plot(nom,lplabel=paste("prob. of incidence T",round(z.p[n,1],2),sep="="))
+```
+## Setting docker download mirror site 
+Sometimes you may find that it's extrimely painfull to pull docker image from docker.io in china. So this tip can help you to set a mirror site locally in your docker pull command.  
+First, find the file `/etc/docker/daemon.json` and modify it with root authority.
+```{javascript}
+{
+  "registry-mirrors": ["https://registry.docker-cn.com"]
+}
+```
+Secondly, restart your docker service. 
+
 ## GVC output format information
 * This tips record the GVC software output format 
 1. `cnv.simp`
@@ -103,51 +161,3 @@ bam2fastx -PANQ -o ${bamin%%Aligned.sortedByCoord.out.bam}_chr2.fq.gz ${bamin%%A
 |MetaLR_pred|||
 |GERP++_RS|||
 |rsID|dbsnp库注释||
-
-## Cluster management 
-* 1. shudown system 
-Shut down computational node 
-```shell
-#!/bin/sh
-for i in `seq 1 3`
-do
- ssh cu0$i "hostname;init 0"
-done
-```
-umount storage 
-```shell
-umount /home
-```
-shutdown login node 
-```shell
-poweroff
-```
-## R code for ploting nomograph from competing risk survival analysis model 
-```R
-library(cmprsk)
-library(rms)
-### add path 
-setwd("C:\\Users\\hh\\Desktop\\nomo")
-rt<-read.csv("Stomach.csv")
-rt
-View(rt)
-attach(rt) 
-#change variable names
-
-cov<-cbind(sexC, Age, AJCC_T,AJCC_N,AJCC_M,Surgery)
-for (i in 1:6)
-{
-  cov[,i]<-factor(cov[,i])
-}
-status<-factor(status)
-z <- crr(time,status,cov)
-z.p <- predict(z,cov)
-n=60#suppose I want to predict the probability of event at time 60(an order)
-df<-data.frame(y=z.p[n,-1],cov)
-ddist <- datadist(df)  
-options(datadist='ddist') 
-lmod<-ols(y~(sexC)+(Age)+(AJCC_T)+(AJCC_N)+(AJCC_M)+(Surgery),data=df)#
-nom<-nomogram(lmod)
-plot(nom,lplabel=paste("prob. of incidence T",round(z.p[n,1],2),sep="="))
-```
-
