@@ -75,12 +75,17 @@ Sometimes you may find that it's extrimely painfull to pull docker image from do
 }
 ```
 * 2. Secondly, restart your docker service. 
-## Install bioconductor R package using VPS  
+## Install bioconductor R package using VPS.   
 
     proxychains4 Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("BSgenome")'
 
+## install bioconductor R package using mirror at UTSC. 
 
-## GVC output format information
+    source("http://bioconductor.org/biocLite.R")
+    options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+    biocLite("your package")
+
+## GVC output format information. 
 * This tips record the GVC software output format 
 1. `cnv.simp`
 
