@@ -1,4 +1,19 @@
 # Blogs_tips
+
+## Table of Contents
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Subset bamfile with chromosome names and convert into paired fastq](#Subset-bamfile-with-chromosome-names-and-convert-into-paired-fastq)
+- [Cluster management](#Cluster-management)
+- [R code for ploting nomograph from competing risk survival analysis model](#R-code-for-ploting-nomograph-from-competing-risk-survival-analysis-model)
+- [Setting docker download mirror site](#Setting-docker-download-mirror-site)
+- [Install bioconductor R package using VPS](#Install-bioconductor-R-package-using-VPS)
+- [install bioconductor R package using mirror at UTSC](#install-bioconductor-R-package-using-mirror-at-UTSC)
+
+
+
 ## Subset bamfile with chromosome names and convert into paired fastq  
 * software required: **[sambamba](https://github.com/lomereiter/sambamba)** and **[bam2fastx](https://github.com/infphilo/tophat)** from tophat binary distribution.<br>
 
