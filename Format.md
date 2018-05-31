@@ -1,7 +1,8 @@
-Format gallary 
+# Format gallary  
+
 ## Table content. 
 
-- [GVC output format information.](gvc-output-format-information.)
+- [GVC output format information.](#gvc-output-format-information)
 
 
 ## GVC output format information. 
