@@ -10,7 +10,7 @@
   - [R code for ploting nomograph from competing risk survival analysis model](#r-code-for-ploting-nomograph-from-competing-risk-survival-analysis-model)
   - [Setting docker download mirror site](#setting-docker-download-mirror-site)
   - [Install bioconductor R package using VPS](#install-bioconductor-R-package-using-VPS)
-  - [install bioconductor R package using mirror at UTSC](#install-bioconductor-R-package-using-mirror-at-UTSC)
+  - [Install bioconductor R package using mirror at UTSC](#install-bioconductor-R-package-using-mirror-at-UTSC)
 
 
 
