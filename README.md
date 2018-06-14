@@ -101,9 +101,10 @@ Sometimes you may find that it's extrimely painfull to pull docker image from do
     options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
     biocLite("your package")
 
-## Tips for using Tianhe-2 super computer  
+## Tips for using Tianhe super computer  
 
-* 1. Logging in the data transfer server for rj account  
-    ssh -p 5566 ln47
-    ssh tn2-ib0
+* 1. Logging in the data transfer server from rj account  
+
+      ssh -p 5566 ln47
+      ssh tn2-ib0
     
