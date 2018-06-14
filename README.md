@@ -11,6 +11,7 @@
   - [Setting docker download mirror site](#setting-docker-download-mirror-site)
   - [Install bioconductor R package using VPS](#install-bioconductor-r-package-using-vps)
   - [Install bioconductor R package using mirror at UTSC](#install-bioconductor-r-package-using-mirror-at-utsc)
+  - [Tips for using Tianhe-2 super computer](#tips-for-using-tianhe-super-computer)
 
 
 
@@ -100,4 +101,9 @@ Sometimes you may find that it's extrimely painfull to pull docker image from do
     options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
     biocLite("your package")
 
+## Tips for using Tianhe-2 super computer  
 
+* 1. Logging in the data transfer server for rj account  
+    ssh -p 5566 ln47
+    ssh tn2-ib0
+    
