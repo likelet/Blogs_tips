@@ -105,6 +105,6 @@ Sometimes you may find that it's extrimely painfull to pull docker image from do
 
 * 1. Logging in the data transfer server from rj account  
 
-      ssh -p 5566 ln47
+      ssh -p 5566 ln47  
       ssh tn2-ib0
     
