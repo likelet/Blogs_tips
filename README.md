@@ -115,7 +115,7 @@ Sometimes, we need to manually check the variants called from different caller, 
     samtools view -bh -L $bedfile -o ${bedfile%%.bed}_subset.bam $bamfile 
     samtools index ${bedfile%%.bed}_subset.bam
 
-here the `bedfile` is a region file with three column including `chr`, `startpos`, `endpos` which covered the target region we interested in . When your target is a site, you should at least set a region flanking this site. For example, if your site is `chr12 200` the region should be `chr12  50  350`. 
+here the `bedfile` is a region file with three column including `chr`, `startpos`, `endpos` which covered the target region. When the target is a single position, you should at least set a region flanking this site. For example, if your site is `chr12 200` the region should be `chr12  50  350`, so that it could keep all reads cover that region for check
 
 
 
