@@ -13,6 +13,7 @@
   - [Install bioconductor R package using mirror at UTSC](#install-bioconductor-r-package-using-mirror-at-utsc)
   - [Tips for using Tianhe-2 super computer](#tips-for-using-tianhe-super-computer)
   - [Subset your bam file for IGV visualization locally](#subset-your-bam-file-for-igv-visualization-locally)
+  - [Download TCGA dataset](#download-tcga-dataset)
 
 
 ## Subset bamfile with chromosome names and convert into paired fastq  
@@ -117,5 +118,11 @@ Sometimes, we need to manually check the variants called from different caller, 
 
 here the `bedfile` is a region file with three column including `chr`, `startpos`, `endpos` which covered the target region. When the target is a single position, you should at least set a region flanking this site. For example, if your site is `chr12 200` the region should be `chr12  50  350`, so that it could keep all reads cover that region for check
 
+## Download TCGA dataset 
 
+Code provided by Yun Sun 
 
+```
+for x in *_manifest.txt; do perl -lanE'BEGIN{say qq#{\n\t\"ids\":[#}$.>1 && (eof) ? say qq{\t\t"$F[0]"} : say qq{\t\t"$F[0]",};END{say qq#\t]\n\}#}' $x > ${x%_*}_request.txt; done
+for x in *_request.txt; do curl --remote-name --remote-header-name --request POST --header \'Content-Type: application/json\' --data @$x \'https://api.gdc.cancer.gov/data\'; done
+```
