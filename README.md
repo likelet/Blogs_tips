@@ -126,3 +126,32 @@ Code provided by Yun Sun
 for x in *_manifest.txt; do perl -lanE'BEGIN{say qq#{\n\t\"ids\":[#}$.>1 && (eof) ? say qq{\t\t"$F[0]"} : say qq{\t\t"$F[0]",};END{say qq#\t]\n\}#}' $x > ${x%_*}_request.txt; done
 for x in *_request.txt; do curl --remote-name --remote-header-name --request POST --header \'Content-Type: application/json\' --data @$x \'https://api.gdc.cancer.gov/data\'; done
 ```
+## install the latest `stringi` in R
+
+paste from [https://github.com/gagolews/stringi/blob/master/INSTALL#L70](https://github.com/gagolews/stringi/blob/master/INSTALL#L70)
+when I install `Seurat` package in R, i found the dependencied package `stringi` could not be installed. My system is centos 7 which has no binary version from CRAN. 
+After goolge, I finally resolved the probem by the following command 
+
+```sh
+wget https://github.com/gagolews/stringi/archive/master.zip -O stringi.zip
+unzip stringi.zip
+sed -i '/\/icu..\/data/d' stringi-master/.Rbuildignore
+R CMD build stringi-master
+```
+
+Assuming the most recent development version of the package is numbered x.y.z,
+a file named `stringi_x.y.z.tar.gz` is created in the current working directory.
+The package can now be installed (the source bundle may be propagated via
+`scp` etc.) by executing:
+
+```sh
+R CMD INSTALL stringi_x.y.z.tar.gz
+```
+
+Alternatively, call from within an R session:
+
+```r
+install.packages("stringi_x.y.z.tar.gz", repos=NULL)
+```
+
+
