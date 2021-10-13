@@ -14,6 +14,7 @@
   - [Tips for using Tianhe-2 super computer](#tips-for-using-tianhe-super-computer)
   - [Subset your bam file for IGV visualization locally](#subset-your-bam-file-for-igv-visualization-locally)
   - [Download TCGA dataset](#download-tcga-dataset)
+  - [Install hdf5r in Centos 7](#Install-hdf5r-in-Centos-7)
 
 
 ## Subset bamfile with chromosome names and convert into paired fastq  
@@ -154,4 +155,39 @@ Alternatively, call from within an R session:
 install.packages("stringi_x.y.z.tar.gz", repos=NULL)
 ```
 
+## Install hdf5r in Centos 7
+>install Rpackage `hdf5r` in Centos 7.   
+
+As the hsd5r depends the `hdf5-devel` upper version(>1.8.4), but the lastest version in centos yum sourse is still 1.8.3. so we need to install the latest hdf5-devel locally, and then install `hdf5r` in R console with `--with-hdf5` configure parameter. 
+1. install `hdf5-devel` from source 
+  ```shell 
+    wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.gz
+    # or find package from https://www.hdfgroup.org/downloads/hdf5/source-code/# 
+    tar xvf hdf5-1.10.5.tar.gz
+    cd hdf5-1.10.5
+    ./configure --prefix=/usr/local/hdf5
+    make
+    make check
+    sudo make install
+    sudo make check-install
+  ```
+2. set the share object path in R profiles 
+  ```
+  echo “dyn.load(’/usr/local/hdf5/lib/libhdf5_hl.so.100’)” >> ~/.Rprofile
+  # you may encounter errors with different hdf5lib version, in hdf5-1.12.x. you need repace the version suffix with 200 
+  # echo “dyn.load(’/usr/local/hdf5/lib/libhdf5_hl.so.200’)” >> ~/.Rprofile
+  # then add the LD_LIBRARY_PATH in your System Path 
+  
+  echo LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/hdf5/lib >> ~/.Renviron
+  
+  ```
+3. install `hdf5r` in R console 
+
+  ```R
+  install.packages(
+  'hdf5r',
+  configure.args = '--with-hdf5=/usr/local/hdf5/bin/h5cc',
+  type = 'source'
+  )
+  ```
 
