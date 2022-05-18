@@ -190,14 +190,14 @@ As the hsd5r depends the `hdf5-devel` upper version(>1.8.4), but the lastest ver
   type = 'source'
   )
   ```
-### install LOHHLA env 
-code from shixiang wang    
-Loss Of Heterozygosity in Human Leukocyte Antigen, a computational tool to evaluate HLA loss using next-generation sequencing data.
-A detail instruction of LOHHLA could be found at [here](https://github.com/mskcc/lohhla)
+## Install LOHHLA env 
+Code from shixiang wang    
+  Loss Of Heterozygosity in Human Leukocyte Antigen, a computational tool to evaluate HLA loss using next-generation sequencing data.
+  A detail instruction of LOHHLA could be found at [here](https://github.com/mskcc/lohhla)
 
 
-```
-mamba create -n hla -c conda-forge -c bioconda lohhla 
-```
-directly create a env for LOHHLA analysis for cancer bamfile 
-and one of the input file could be found at [here](https://github.com/ANHIG/IMGTHLA/tree/Latest/fasta)
+  ```
+  mamba create -n hla -c conda-forge -c bioconda lohhla 
+  ```
+  directly create a env for LOHHLA analysis for cancer bamfile 
+  and one of the input file could be found at [here](https://github.com/ANHIG/IMGTHLA/tree/Latest/fasta)
