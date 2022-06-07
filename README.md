@@ -201,3 +201,39 @@ Code from shixiang wang
   ```
   directly create a env for LOHHLA analysis for cancer bamfile 
   and one of the input file could be found at [here](https://github.com/ANHIG/IMGTHLA/tree/Latest/fasta)
+  
+  
+## R code for get screen shot by URLs 
+  [BioTreasury](https://biotreasury.rjmart.cn/#/) need a feature that automatically obtain screen shot from the given urls, and also need the system check wether the urls still work at present. In R environment, I found a proper package can do this and provide the following code to run the task:    
+  ```R
+  # required packages 
+  library(webshot2)
+
+  library(pbapply)  
+
+
+  # innitialization, webshot::install_phantomjs()
+  #webshot(url, filename.extension)
+  dat<-read.delim("dat.tsv",header = T)
+
+  #screen shot function 
+  get_screen_shot<-function(vec){
+
+    print(vec[4])
+    tryCatch(webshot(vec[4], paste0("image/",vec[2],".png"),cliprect="viewport"), 
+             error = function(e) paste(vec[4],"  not successed"))
+
+  }
+
+  # create res folder 
+  # dir.create("image")
+  #get screen shot 
+  pbapply(dat, 1, get_screen_shot)
+
+
+  ```
+ > The result images could be found at the `image` folder in the current path. 
+
+
+
+
